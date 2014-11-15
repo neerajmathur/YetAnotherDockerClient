@@ -10,10 +10,15 @@ module.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'app/views/images.html',
+        templateUrl: 'app/views/host.html',
         controller: 'ImagesController'
     })
 	
+     .when('/host', {
+        templateUrl: 'app/views/host.html',
+        controller: 'HostController'
+    })
+    
 	 .when('/images', {
         templateUrl: 'app/views/images.html',
         controller: 'ImagesController'
@@ -30,6 +35,6 @@ module.config(['$routeProvider',
     })
 	
 	.otherwise ({
-    redirectTo: '/'
+    redirectTo: '/host'
 	});
 }]);
