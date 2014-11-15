@@ -1,0 +1,50 @@
+div.menu
+{
+    /*width:500px;margin:0 auto;*//*Uncomment this line to make the menu center-aligned.*/
+	margin-left: 40px;
+	margin-top: 10px;
+    text-align:left;
+    font-size:0;
+    height: 30px;    
+    *position:relative;*top:1px;/*Hacks for IE6 & IE7 */    
+}
+
+div.menu a
+{
+    display: inline-block;
+    padding: 0 25px;
+    margin-right:1px; /* It specifies the distance between each tab */
+    background:#F7F7F7;
+    color:Black;
+    text-decoration:none;
+    font: normal 12px Arial;
+    line-height: 30px;
+    border:1px solid #CAD0DB;
+    border-bottom:0;
+    color:#666;
+    vertical-align:top;/*ChangeSet#2*/
+    text-decoration:none;
+}
+
+div.menu a:hover, div.menu a.current
+{
+    background:#E9ECF0;
+    line-height: 30px;
+    color:#000;
+}
+
+div.menusub
+{
+    height:10px;
+    border:1px solid #CAD0DB;
+    background:#E9ECF0;
+}
+
+div.searchBox
+{
+
+float:right;
+border:1px;
+margin-right:50px
+
+}

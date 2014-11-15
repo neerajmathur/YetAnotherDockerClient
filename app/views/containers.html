@@ -1,0 +1,41 @@
+<div class="panel panel-default" style="margin:10px">
+  <div class="panel-heading"><b>Containers</b></div>
+  <div class="panel-body">
+  
+   <!-- <form class="form-inline" style="padding:10px;">
+    <label>Name</label>
+        <input type="text" class="form-control" name="name" ng-model="newImages.name"/>
+    <label>Email</label>
+        <input type="text" class="form-control" name="email" ng-model="newImages.email"/>
+    <label>Phone</label>
+        <input type="text" class="form-control" name="phone" ng-model="newImages.phone"/>
+                <input type="hidden" ng-model="newImages.id" />
+     <input type="button" class="btn btn-primary" value="Save" ng-click="saveImages()" />
+    </form> -->
+	
+	
+<table class="table table-hover">
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Image</th>
+	<th>Status</th>	
+    <th>Size</th>
+	<th>Created</th>
+	
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="container in ContainersList | filter:searchFor">
+    <td><a href="#/containers/{{I.Id}}">{{ container.Id | limitTo: 12}}</a></td>
+    <td><a href="#/containers/{{I.Id}}">{{ container.Names[0] }}</a></td>
+    <td>{{ container.Image  }}</td>
+	<td>{{ container.Status }}</td>
+	<td>{{ container.SizeRw  }} bytes</td>
+	<td>{{container.Created | date:"dd/MM/yyyy"}}</td>
+ </tr>
+</tbody>
+</table>   
+</div>
+</div>
