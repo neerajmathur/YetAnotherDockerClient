@@ -28,8 +28,8 @@
 </thead>
 <tbody>
 <tr ng-repeat="container in ContainersList | filter:searchFor">
-    <td><a href="#/containers/{{I.Id}}">{{ container.Id | limitTo: 12}}</a></td>
-    <td><a href="#/containers/{{I.Id}}">{{ container.Names[0] }}</a></td>
+    <td><a href="#/containers/{{container.Id}}">{{ container.Id | limitTo: 12}}</a></td>
+    <td><a href="#/containers/{{container.Id}}">{{ container.Names[0] }}</a></td>
     <td>{{ container.Image  }}</td>
 	<td>{{ container.Status }}</td>
 	<td>{{ container.SizeRw  }} bytes</td>
