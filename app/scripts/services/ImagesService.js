@@ -49,7 +49,7 @@ module.service('ImagesService', function ($http,docker) {
   //simply returns the Imagess list
 	return {
      getImageList: function(callback) {
-       $http.get(docker.baseurl+'/images/json').success(callback);
+       $http.get(docker.baseurl+'/images/json?all=0').success(callback);
      }
    }
 });

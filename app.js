@@ -1,5 +1,4 @@
-var module = angular.module('app', ['ngRoute']);
-
+var module = angular.module('app', ['ngRoute','ui.bootstrap']);
 
 module.constant('docker', {
     baseurl: 'http://192.168.232.133:4243'
@@ -19,6 +18,8 @@ module.config(['$routeProvider',
         controller: 'HostController'
     })
     
+  
+    
 	 .when('/images', {
         templateUrl: 'app/views/images.html',
         controller: 'ImagesController'
@@ -29,9 +30,9 @@ module.config(['$routeProvider',
         controller: 'ContainersController'
     })
 	
-	 .when('/events', {
-        templateUrl:'app/views/images.html',
-        controller: 'ImagesController'
+	   .when('/events', {
+        templateUrl: 'app/views/events.html',
+        controller: 'EventsController'
     })
 	
 	.otherwise ({
