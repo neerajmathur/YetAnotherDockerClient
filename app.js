@@ -24,6 +24,11 @@ module.config(['$routeProvider',
         templateUrl: 'app/views/images.html',
         controller: 'ImagesController'
     })
+    
+     .when('/images/:imageid', {
+        templateUrl: 'app/views/image.html',
+        controller: 'ImageController'
+    })
 	
 	 .when('/containers', {
         templateUrl:'app/views/containers.html',

@@ -1,0 +1,86 @@
+<div data-app-view-segment="1" class="navbar-form ng-scope">
+	<span class="text-muted h3">Image: </span>
+	<h3 style="display: inline !important; width: 150px">
+		<strong class="ng-binding"></strong> <small class="ng-binding">{{info.Id | limitTo: 12}} - {{info.ContainerConfig.Image}} ,
+			Created: {{info.Created | date:"dd-MMMM-yyyy"}}</small>
+	</h3>
+	<button class="pull-right btn btn-danger btn-xs"
+		data-ng-click="destroyImage()" style="width: 80px">
+		<i class="glyphicon glyphicon-remove-circle"></i> Destroy
+	</button>
+	<button class="pull-right btn btn-success btn-xs"
+		data-ng-click="pushImage()" style="width: 80px; margin-right: 2px">
+		<i class="glyphicon glyphicon-cloud-upload"></i> Push
+	</button>
+	<!--
+<button type="button" class="pull-right btn btn-primary btn-xs" data-ng-click="push()" style="width: 80px;margin-right: 80px;">
+    <i class="glyphicon glyphicon-upload"></i> Push</button>
+-->
+	<hr>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<dl class="dl-horizontal">
+						<dt>Id</dt>
+						<dd class="ng-binding">{{info.Id | limitTo: 12}}</dd>
+						<dt>OS</dt>
+						<dd class="ng-binding">{{info.Os}} - {{info.Architecture}}</dd>
+						<dt>Size</dt>
+						<dd class="ng-binding">{{info.Size}} bytes </dd>
+						<dt>Created</dt>
+						<dd class="ng-binding">{{info.Created | date:"dd-MMMM-yyyy"}}</dd>
+						<dt>Parent</dt>
+						<dd>
+							<a href="#/images/{{info.Parent}}" class="ng-binding"
+								data-ng-href="#/images/{{info.Parent}}">{{info.Parent | limitTo: 12}}</a>
+						</dd>
+						<dt>Container</dt>
+						<dd>
+							<a href="#/container/{{info.Container}}" class="ng-binding"
+								data-ng-href="#/container/{{info.Container}}">{{info.Container | limitTo: 12}}</a>
+						</dd>
+					</dl>
+				</td>
+				<td style="vertical-align: text-top">
+					<dl class="dl-horizontal">
+						<dt>Author</dt>
+						<dd class="ng-binding">{{info.Author}}</dd>
+						<dt>Working Dir</dt>
+						<dd class="ng-binding">{{info.Config.WorkingDir}}</dd>
+						<dt>Command</dt>
+						<dd class="ng-binding">{{info.Config.Cmd}}</dd>
+						<dt>Comment</dt>
+						<dd class="ng-binding">{{info.Config.Comment}}</dd>
+						<dt>Tag</dt>
+						<dd class="ng-binding">{{historyRows[0].Tags}}</dd>
+					</dl>
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+	<h3>History:</h3>
+	
+	
+	<table class="table table-hover">
+<thead>
+<tr>
+    <th>ID</th>
+    <th>Created By</th>
+    <th>Date</th>
+	<th>Size</th>	
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="row in historyRows | filter:searchFor">
+    <td><a href="#/images/{{row.Id}}">{{ row.Id | limitTo: 12}}</a></td>
+    <td>{{ row.CreatedBy  }}</td>
+    <td>{{row.Created | date:"dd/MM/yyyy"}}</td>
+	<td>{{ row.Size }}</td>
+ </tr>
+</tbody>
+</table>   
+	
+</div>
