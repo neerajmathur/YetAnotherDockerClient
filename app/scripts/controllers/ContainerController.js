@@ -17,7 +17,7 @@
 }); */
 
 if (typeof setImmediate === 'undefined') {
-    var setImmediate = setTimeout;
+	var setImmediate = setTimeout;
 }
 
 angular
@@ -28,38 +28,75 @@ angular
 						'$scope',
 						'$routeParams',
 						'$location',
-						
+
 						'docker',
 						'terminal',
 						'ContainerService',
-						function($scope, $routeParams, $location,
-								docker, tty,ContainerService) {
-							
-							$scope.Console = {logs: {terminal: null, connection: null}};
-							
+						function($scope, $routeParams, $location, docker, tty,
+								ContainerService) {
+
+							$scope.Console = {
+								logs : {
+									terminal : null,
+									connection : null
+								}
+							};
+
 							$scope.attachConsole = function() {
 								var parser = document.createElement('a'), termContainer = angular
 										.element('#terminal'), url;
-								url = (parser.protocol === 'https:' ? 'wss' : 'ws') + '://'
-										+  '192.168.232.133:4243/containers/' + $routeParams.containerid
+								url = (parser.protocol === 'https:' ? 'wss'
+										: 'ws')
+										+ '://'
+										+ '192.168.232.133:4243/containers/'
+										+ $routeParams.containerid
 										+ '/attach/ws?logs=0&stream=1&stdout=1&stderr=1&stdin=1';
 
 								termContainer.html("");
-								$scope.Console.terminal = tty(termContainer[0], url);
+								$scope.Console.terminal = tty(termContainer[0],
+										url);
 							};
 
-							//$scope.attachConsole();
+							$scope.loadContainerInfo = function() {
+								ContainerService.getContainerInfo(
+										$routeParams.containerid,
+										function(data) {
+											$scope.Info = data;
+										});
+							}
+
+							$scope.start = function() {
+								ContainerService.start(
+										$routeParams.containerid,
+										function(data) {
+											$scope.loadContainerInfo();
+										});
+							}
 							
+							$scope.stop = function() {
+								ContainerService.stop(
+										$routeParams.containerid,
+										function(data) {
+											$scope.loadContainerInfo();
+										});
+							}
 							
+							$scope.restart = function() {
+								ContainerService.restart(
+										$routeParams.containerid,
+										function(data) {
+											$scope.loadContainerInfo();
+										});
+							}
 							
-							$scope.loadContainerInfo= function () {
-								 ContainerService.getContainerInfo($routeParams.containerid,function(data) {
-									 $scope.Info = data;
-								  });
-							  }
-						 
+							$scope.kill = function() {
+								ContainerService.kill(
+										$routeParams.containerid,
+										function(data) {
+											$scope.loadContainerInfo();
+										});
+							}
+
 							$scope.loadContainerInfo();
-							
-							
-							
+
 						} ]);
