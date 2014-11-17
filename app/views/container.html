@@ -1,1 +1,150 @@
-<pre><div id="terminal" style="line-height: 1"></div></pre>
+<div data-app-view-segment="1" class="navbar-form ng-scope">
+	<span class="text-muted h3">Container: </span>
+	<h3 style="display: inline !important; width: 150px">
+		<strong class="ng-binding">{{Info.Name}}</strong> <small class="ng-binding">{{Info.Config.Hostname}},
+			Created: {{Info.Created | date:"dd MMMM yyyy"}}</small>
+	</h3>
+	<button type="button" class="pull-right btn btn-warning btn-xs"
+		data-ng-disabled="!Info.State.Running" data-ng-click="kill()"
+		style="width: 80px">
+		<i class="glyphicon glyphicon-screenshot"></i> Kill
+	</button>
+	<button type="button" class="pull-right btn btn-danger btn-xs"
+		data-ng-disabled="!Info.State.Running" data-ng-click="restart()"
+		style="width: 80px">
+		<i class="glyphicon glyphicon-repeat"></i> Restart
+	</button>
+	<button type="button" class="pull-right btn btn-warning btn-xs"
+		data-ng-disabled="!Info.State.Running" data-ng-click="stop()"
+		style="width: 80px">
+		<i class="glyphicon glyphicon-off"></i> Stop
+	</button>
+	<button disabled="disabled" type="button"
+		class="pull-right btn btn-primary btn-xs"
+		data-ng-disabled="Info.State.Running" data-ng-click="start()"
+		style="width: 80px">
+		<i class="glyphicon glyphicon-play-circle"></i> Start
+	</button>
+	<br>
+	<button disabled="disabled" class="pull-right btn-xs btn-danger btn"
+		data-ng-disabled="Info.State.Running" data-ng-click="destroy()"
+		style="width: 80px">
+		<i class="glyphicon glyphicon-remove-circle"></i> Destroy
+	</button>
+	<button class="pull-right btn-xs btn-info btn" data-ng-click="export()"
+		style="width: 80px; margin-right: 80px">
+		<i class="glyphicon glyphicon-download-alt"></i> Export
+	</button>
+	<button class="pull-right btn-xs btn-success btn"
+		data-ng-click="commit()" style="width: 80px">
+		<i class="glyphicon glyphicon-ok"></i> Commit
+	</button>
+	<table class="table" style="width: auto">
+		<tbody>
+			<tr>
+				<td>
+					<dl class="dl-horizontal detail-data">
+						<dt>Hostname</dt>
+						<dd class="ng-binding">
+							{{Info.Config.Hostname}} <strong class="ng-binding"></strong>
+						</dd>
+						<dt>Image</dt>
+						<dd>
+							<a class="ng-binding" href="#/images/{{Info.Image}}">{{Info.Config.Image}}</a>
+						</dd>
+						<dt>Shared CPUs</dt>
+						<dd class="ng-binding">All</dd>
+						<dt>Memory / SWAP</dt>
+						<dd class="ng-binding">{{Info.Config.Memory}} / {{Info.Config.MemorySwap}}</dd>
+						<dt>Command</dt>
+						<dd class="ng-binding">{{Info.Path}}</dd>
+					</dl>
+				</td>
+				<td>
+					<dl class="dl-horizontal detail-data">
+						<dt>Networking</dt>
+						<dd>
+							<i
+								data-ng-class="{'glyphicon-unchecked text-muted': Info.Config.NetworkDisabled, 'glyphicon-check text-success': !Info.Config.NetworkDisabled}"
+								class="glyphicon glyphicon-check text-success"></i>
+						</dd>
+						<dt>Publish All Ports</dt>
+						<dd>
+							<i
+								data-ng-class="{'glyphicon-unchecked text-muted': !Info.HostConfig.PublishAllPorts, 'glyphicon-check text-success': Info.HostConfig.PublishAllPorts}"
+								class="glyphicon glyphicon-unchecked text-muted"></i>
+						</dd>
+						<dt>IPv4 Address</dt>
+						<dd class="ng-binding">{{Info.NetworkSettings.IPAddress}}/{{Info.NetworkSettings.IPPrefixLen}}</dd>
+						<dt>Gateway</dt>
+						<dd class="ng-binding">{{Info.NetworkSettings.Gateway}}</dd>
+						<dt>DNS</dt>
+						<dd class="ng-binding">{{Info.HostConfig.Dns}}</dd>
+					</dl>
+				</td>
+				<td>
+					<dl class="dl-horizontal detail-data">
+					</dl>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+</div>
+
+<tabset>
+    <tab heading="Info" active="activeTab[0]" select="activeTab[0] = true;">
+
+<table class="table" style="width: 800px;">
+            <thead>
+                <tr><th class="h4 text-center" style="width: 400px;">Mounted volumes</th>
+                    <th class="h4 text-center" style="width: 400px;">Published ports</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <table class="table" style="width: 100%">
+                            <thead>
+                                <tr><th>From</th><th>To</th><th>RO/RW</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="(to, from) in Info.Volumes">
+                                    <td style="max-width: 100px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <span data-popover="{{ from }}" data-popover-trigger="mouseenter">{{ from }}</span>
+                                    </td>
+                                    <td>
+                                        <span data-popover="{{ to }}" data-popover-trigger="mouseenter">{{ to }}</span>
+                                    </td>
+                                    <td>{{ Info.VolumesRW[to] ? 'RW' : 'RO' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td>
+                        <table class="table" style="width: 100%">
+                            <thead>
+                                <tr><th>Local Port/Protocol</th><th>Host ip:port</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr data-ng-repeat="(port, binding) in Info.HostConfig.PortBindings" style="max-width: 100px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                <td>{{ port }}</td><td>{{ binding[0].HostIp }}:{{ binding[0].HostPort }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+   </tab>
+ <tab heading="Process list" active="activeTab[1]" select="activeTab[1] = true;processList(1)" data-disabled="!Info.State.Running">
+ </tab>
+ <tab heading="Terminal" active="activeTab[2]" select="activeTab[2] = true;attachConsole()" data-disabled="!Info.State.Running">
+		 <pre><div id="terminal" style="line-height: 1"></div></pre>
+</tab>
+ <tab heading="Log" active="activeTab[3]" select="activeTab[3] = true;logs()">
+        <pre><code id="logTerminal" style="line-height: 1;height: 200px;"></code></pre>
+    </tab>
+      <tab heading="Json Config" active="activeTab[5]" select="activeTab[5] = true">
+        <json-explorer json-data="{{Info}}" collapsed="true"></json-explorer>
+    </tab>
+</tabset>

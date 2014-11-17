@@ -31,8 +31,9 @@ angular
 						
 						'docker',
 						'terminal',
+						'ContainerService',
 						function($scope, $routeParams, $location,
-								docker, tty) {
+								docker, tty,ContainerService) {
 							
 							$scope.Console = {logs: {terminal: null, connection: null}};
 							
@@ -47,6 +48,18 @@ angular
 								$scope.Console.terminal = tty(termContainer[0], url);
 							};
 
-							$scope.attachConsole();
+							//$scope.attachConsole();
+							
+							
+							
+							$scope.loadContainerInfo= function () {
+								 ContainerService.getContainerInfo($routeParams.containerid,function(data) {
+									 $scope.Info = data;
+								  });
+							  }
+						 
+							$scope.loadContainerInfo();
+							
+							
 							
 						} ]);

@@ -40,8 +40,8 @@ angular.module('app')
                 terminal = angular.extend({
                     socket: socket,
                     tty: new Terminal({
-                        cols: 0,
-                        rows: 0,
+                        cols: 150,
+                        rows: 40,
                         useStyle: true,
                         screenKeys: true
                     }),
