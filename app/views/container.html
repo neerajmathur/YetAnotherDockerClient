@@ -1,8 +1,9 @@
 <div data-app-view-segment="1" class="navbar-form ng-scope">
 	<span class="text-muted h3">Container: </span>
 	<h3 style="display: inline !important; width: 150px">
-		<strong class="ng-binding">{{Info.Name}}</strong> <small class="ng-binding">{{Info.Config.Hostname}},
-			Created: {{Info.Created | date:"dd MMMM yyyy"}}</small>
+		<strong class="ng-binding">{{Info.Name}}</strong> <small
+			class="ng-binding">{{Info.Config.Hostname}}, Created:
+			{{Info.Created | date:"dd MMMM yyyy"}}</small>
 	</h3>
 	<button type="button" class="pull-right btn btn-warning btn-xs"
 		data-ng-disabled="!Info.State.Running" data-ng-click="kill()"
@@ -35,10 +36,69 @@
 		style="width: 80px; margin-right: 80px">
 		<i class="glyphicon glyphicon-download-alt"></i> Export
 	</button>
-	<button class="pull-right btn-xs btn-success btn"
-		data-ng-click="commit()" style="width: 80px">
+	<button class="pull-right btn-xs btn-success btn" data-toggle="modal"
+		data-target="#myModal" style="width: 80px">
 		<i class="glyphicon glyphicon-ok"></i> Commit
 	</button>
+
+	<!-- container commit modal dialogue-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form role="form">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Commit Container</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="repo" class="control-label">Repository</label> <br />
+							<input type="text" id="repo" class="form-control"
+								data-ng-model="input.repo" style="width: 100%" />
+						</div>
+						<br /> <br />
+						<div class="form-group">
+							<label for="tag" class="control-label">Tag</label> <br /> <input
+								type="text" id="tag" class="form-control"
+								data-ng-model="input.tag" style="width: 100%" />
+						</div>
+						<br /> <br />
+						<div class="form-group">
+							<label for="m" class="control-label">Commit message</label> <br />
+							<input type="text" id="m" class="form-control"
+								data-ng-model="input.m" style="width: 100%" />
+						</div>
+						<br /> <br />
+						<div class="form-group">
+							<label for="author" class="control-label">Author</label> <br />
+							<input type="text" id="author" class="form-control"
+								data-ng-model="input.author" style="width: 100%" />
+						</div>
+						<br /> <br />
+						<div class="form-group">
+							<label for="run" class="control-label">Run</label> <br /> <input
+								type="text" id="run" class="form-control"
+								data-ng-model="input.run" style="width: 100%" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary"
+							data-ng-click="commit()">Commit</button>
+					</div>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
 	<table class="table" style="width: auto">
 		<tbody>
 			<tr>
@@ -55,7 +115,8 @@
 						<dt>Shared CPUs</dt>
 						<dd class="ng-binding">All</dd>
 						<dt>Memory / SWAP</dt>
-						<dd class="ng-binding">{{Info.Config.Memory}} / {{Info.Config.MemorySwap}}</dd>
+						<dd class="ng-binding">{{Info.Config.Memory}} /
+							{{Info.Config.MemorySwap}}</dd>
 						<dt>Command</dt>
 						<dd class="ng-binding">{{Info.Path}}</dd>
 					</dl>
@@ -89,62 +150,95 @@
 			</tr>
 		</tbody>
 	</table>
-	
+
 </div>
 
-<tabset>
-    <tab heading="Info" active="activeTab[0]" select="activeTab[0] = true;">
+<tabset> <tab heading="Info" active="activeTab[0]"
+	select="activeTab[0] = true;">
 
 <table class="table" style="width: 800px;">
-            <thead>
-                <tr><th class="h4 text-center" style="width: 400px;">Mounted volumes</th>
-                    <th class="h4 text-center" style="width: 400px;">Published ports</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <table class="table" style="width: 100%">
-                            <thead>
-                                <tr><th>From</th><th>To</th><th>RO/RW</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr data-ng-repeat="(to, from) in Info.Volumes">
-                                    <td style="max-width: 100px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        <span data-popover="{{ from }}" data-popover-trigger="mouseenter">{{ from }}</span>
-                                    </td>
-                                    <td>
-                                        <span data-popover="{{ to }}" data-popover-trigger="mouseenter">{{ to }}</span>
-                                    </td>
-                                    <td>{{ Info.VolumesRW[to] ? 'RW' : 'RO' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table class="table" style="width: 100%">
-                            <thead>
-                                <tr><th>Local Port/Protocol</th><th>Host ip:port</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr data-ng-repeat="(port, binding) in Info.HostConfig.PortBindings" style="max-width: 100px;white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                <td>{{ port }}</td><td>{{ binding[0].HostIp }}:{{ binding[0].HostPort }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-   </tab>
- <tab heading="Process list" active="activeTab[1]" select="activeTab[1] = true;processList(1)" data-disabled="!Info.State.Running">
- </tab>
- <tab heading="Terminal" active="activeTab[2]" select="activeTab[2] = true;attachConsole()" data-disabled="!Info.State.Running">
-		 <pre><div id="terminal" style="line-height: 1"></div></pre>
-</tab>
- <tab heading="Log" active="activeTab[3]" select="activeTab[3] = true;logs()">
-        <pre><code id="logTerminal" style="line-height: 1;height: 200px;"></code></pre>
-    </tab>
-      <tab heading="Json Config" active="activeTab[5]" select="activeTab[5] = true">
-        <json-explorer json-data="{{Info}}" collapsed="true"></json-explorer>
-    </tab>
-</tabset>
+	<thead>
+		<tr>
+			<th class="h4 text-center" style="width: 400px;">Mounted volumes</th>
+			<th class="h4 text-center" style="width: 400px;">Published ports</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+				<table class="table" style="width: 100%">
+					<thead>
+						<tr>
+							<th>From</th>
+							<th>To</th>
+							<th>RO/RW</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-ng-repeat="(to, from) in Info.Volumes">
+							<td
+								style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+								<span data-popover="{{ from }}"
+								data-popover-trigger="mouseenter">{{ from }}</span>
+							</td>
+							<td><span data-popover="{{ to }}"
+								data-popover-trigger="mouseenter">{{ to }}</span></td>
+							<td>{{ Info.VolumesRW[to] ? 'RW' : 'RO' }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td>
+				<table class="table" style="width: 100%">
+					<thead>
+						<tr>
+							<th>Local Port/Protocol</th>
+							<th>Host ip:port</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr
+							data-ng-repeat="(port, binding) in Info.HostConfig.PortBindings"
+							style="max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+							<td>{{ port }}</td>
+							<td>{{ binding[0].HostIp }}:{{ binding[0].HostPort }}</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</tab> <tab heading="Process list" active="activeTab[1]"
+	select="activeTab[1] = true;getProcessList()"
+	data-disabled="!Info.State.Running">
+
+<table class="table prev" style="width: auto;">
+	<thead>
+		<tr>
+			<th data-ng-repeat="Title in processList.Titles"
+				style="min-width: 70px;">{{ Title }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat="process in processList.Processes">
+			<td data-ng-repeat="col in process track by $index">{{ col }}</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+</tab> <tab heading="Terminal" active="activeTab[2]"
+	select="activeTab[2] = true;attachConsole()"
+	data-disabled="!Info.State.Running"> <pre>
+	<div id="terminal" style="line-height: 1"></div>
+</pre> </tab> <tab heading="Changes" active="activeTab[3]"
+	select="activeTab[3] = true;getChanges()">
+	<h4>Filename </h4>
+	<ul class="list-group">
+  <li class="list-group-item"  data-ng-repeat="path in changes">{{path}}</li>
+</ul>
+	 </tab> <tab heading="Json Config" active="activeTab[5]"
+	select="activeTab[5] = true"> <json-explorer json-data="{{Info}}"
+	collapsed="true"></json-explorer> </tab> </tabset>

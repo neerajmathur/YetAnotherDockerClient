@@ -72,15 +72,14 @@ angular
 											$scope.loadContainerInfo();
 										});
 							}
-							
+
 							$scope.stop = function() {
-								ContainerService.stop(
-										$routeParams.containerid,
+								ContainerService.stop($routeParams.containerid,
 										function(data) {
 											$scope.loadContainerInfo();
 										});
 							}
-							
+
 							$scope.restart = function() {
 								ContainerService.restart(
 										$routeParams.containerid,
@@ -88,14 +87,52 @@ angular
 											$scope.loadContainerInfo();
 										});
 							}
-							
+
 							$scope.kill = function() {
-								ContainerService.kill(
-										$routeParams.containerid,
+								ContainerService.kill($routeParams.containerid,
 										function(data) {
 											$scope.loadContainerInfo();
 										});
 							}
+
+							$scope.commit = function() {
+								try {
+									if ($scope.input.repo) {
+										 ContainerService.commit(
+										$routeParams.containerid,$scope.input,
+										function(data) {
+											$location.path('/images/'+data.Id);
+										});
+										
+									} else
+										alert("repository name is require");
+								} catch (ex) {
+									alert("repository name is require");
+								}
+								// ContainerService.kill(
+								// $routeParams.containerid,
+								// function(data) {
+								// $scope.loadContainerInfo();
+								// });
+							}
+							
+							
+							$scope.getProcessList = function() {
+								ContainerService.getProcessList(
+										$routeParams.containerid,
+										function(data) {
+											$scope.processList = data;
+										});
+							}
+							
+							$scope.getChanges = function() {
+								ContainerService.getChanges(
+										$routeParams.containerid,
+										function(data) {
+											$scope.changes = data;
+										});
+							}
+							
 
 							$scope.loadContainerInfo();
 

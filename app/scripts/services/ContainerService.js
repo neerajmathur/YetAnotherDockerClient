@@ -32,7 +32,25 @@ module.service('ContainerService', function($http, docker) {
 					.post(
 							docker.baseurl + '/containers/' + containerid
 									+ '/kill').success(callback);
+		},
+		
+		commit : function(containerid,input, callback) {
+			$http
+					.post(
+							docker.baseurl + '/commit?container=' + containerid
+									+ '&comment='+input.m+'&repo='+input.repo+'').success(callback);
+		},
+		
+		getProcessList : function(containerid, callback) {
+			$http.get(docker.baseurl + '/containers/' + containerid + '/top')
+					.success(callback);
+		},
+		
+		getChanges : function(containerid, callback) {
+			$http.get(docker.baseurl + '/containers/' + containerid + '/changes')
+					.success(callback);
 		}
+		
 	}
 
 });

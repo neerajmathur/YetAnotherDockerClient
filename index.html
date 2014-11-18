@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- bootstrap -->
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 
 
-<script  src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script  src="http://angular.github.io/angular-phonecat/step-7/app/bower_components/angular/angular.js"></script>
-<script src="http://angular.github.io/angular-phonecat/step-7/app/bower_components/angular-route/angular-route.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="main.css">
-<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
-<script src="term.js"></script>
+
+
 
 
 </head>
-<body ng-app="app" >
-<div class="menu">
-    <a href="#/host">Host</a>
-    <a href="#/containers" >Containers</a>
-    <a href="#/images">Images</a>
-    <a href="#/events">Events</a>
-	<div class="searchBox" > 
-	
-	<input type="text" ng-model="searchFor" class="form-control" size="30" placeholder="Filter" /></div>
-</div>
+<body ng-app="app">
+	<div class="menu">
+		<a href="#/host">Host</a> <a href="#/containers">Containers</a> <a
+			href="#/images">Images</a> <a href="#/events">Events</a>
+		<div class="searchBox">
 
-<div class="menusub"> </div>
+			<input type="text" ng-model="searchFor" class="form-control"
+				size="30" placeholder="Filter" />
+		</div>
+	</div>
+
+	<div class="menusub"></div>
 
 	<div ng-view></div>
-	<script  src="app.js"></script>
-	
-	<script  src="app\scripts\controllers\ImagesController.js"></script>
-	<script  src="app\scripts\services\ImagesService.js"></script>
-	<script  src="app\scripts\controllers\ContainersController.js"></script>
-	<script  src="app\scripts\services\ContainersService.js"></script>
-	<script  src="app\scripts\controllers\HostController.js"></script>
-	<script  src="app\scripts\services\HostService.js"></script>
-	<script  src="app\scripts\controllers\EventsController.js"></script>
-	<script  src="app\scripts\services\EventsService.js"></script>
-	<script  src="app\scripts\controllers\ImageController.js"></script>
-	<script  src="app\scripts\services\ImageService.js"></script>
-	<script  src="app\scripts\controllers\ContainerController.js"></script>
-	<script  src="app\scripts\services\ContainerService.js"></script>
-	<script  src="app\scripts\services\terminal.js"></script>
-	
-	
+
+
+	<!-- bootstrap -->
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script
+		src="http://angular.github.io/angular-phonecat/step-7/app/bower_components/angular/angular.js"></script>
+	<script
+		src="http://angular.github.io/angular-phonecat/step-7/app/bower_components/angular-route/angular-route.js"></script>
+	<script
+		src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.2.js"></script>
+	<script src="term.js"></script>
+
+
+	<script src="app.js"></script>
+
+	<script src="app\scripts\controllers\ImagesController.js"></script>
+	<script src="app\scripts\services\ImagesService.js"></script>
+	<script src="app\scripts\controllers\ContainersController.js"></script>
+	<script src="app\scripts\services\ContainersService.js"></script>
+	<script src="app\scripts\controllers\HostController.js"></script>
+	<script src="app\scripts\services\HostService.js"></script>
+	<script src="app\scripts\controllers\EventsController.js"></script>
+	<script src="app\scripts\services\EventsService.js"></script>
+	<script src="app\scripts\controllers\ImageController.js"></script>
+	<script src="app\scripts\services\ImageService.js"></script>
+	<script src="app\scripts\controllers\ContainerController.js"></script>
+	<script src="app\scripts\services\ContainerService.js"></script>
+	<script src="app\scripts\services\terminal.js"></script>
+
+
 </body>
 </html>
