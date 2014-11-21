@@ -1,4 +1,4 @@
-var module = angular.module('app', ['ngRoute','ui.bootstrap','ui.bootstrap.typeahead', 'ui.bootstrap.modal']);
+var module = angular.module('app', ['ngRoute','ui.bootstrap','ui.bootstrap.typeahead', 'ui.bootstrap.modal','ngTagsInput']);
 
 module.constant('docker', {
     baseurl: 'http://192.168.232.133:4243'
