@@ -34,6 +34,13 @@ module.service('ContainerService', function($http, docker) {
 									+ '/kill').success(callback);
 		},
 		
+		destroy : function(containerid, callback) {
+			$http
+					.delete(
+							docker.baseurl + '/containers/' + containerid
+									+ '?v=1').success(callback);
+		},
+		
 		commit : function(containerid,input, callback) {
 			$http
 					.post(

@@ -133,6 +133,16 @@ angular
 										});
 							}
 							
+							$scope.destroy = function()
+							{
+								ContainerService.destroy(
+										$routeParams.containerid,
+										function(data) {
+											$location.path('/containers');
+										});
+								
+							}
+							
 
 							$scope.loadContainerInfo();
 
