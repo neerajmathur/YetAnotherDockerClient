@@ -1,7 +1,7 @@
 var module = angular.module('app', ['ngRoute','ui.bootstrap','ui.bootstrap.typeahead', 'ui.bootstrap.modal','ngTagsInput']);
 
 module.constant('docker', {
-    baseurl: 'http://192.168.232.133:4243'
+    baseurl: 'http://192.168.232.135:4243'
 });
 
 

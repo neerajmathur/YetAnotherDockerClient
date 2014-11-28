@@ -1,3 +1,6 @@
+'use strict';
+
+
 module.controller('ContainersController', function ($scope,$http, $location,$filter,ContainersService,ImagesService) {
  
 	$scope.loadContainers= function () {
@@ -32,10 +35,6 @@ module.controller('ContainersController', function ($scope,$http, $location,$fil
 	}
 	
 	
-	//function filter(array, term) {
-    //    return $filter('filter')(array, term);
-    //}
-	
 	function tagsToArray(tags) {
         return (tags || [])
             .map(function (tag) {
@@ -45,10 +44,15 @@ module.controller('ContainersController', function ($scope,$http, $location,$fil
                 return !!value;
             });
     }
-	
+
+    function filter(array, term) {
+        return $filter('filter')(array, term);
+    }
+    
+    
 	$scope.getImages = function () {
 		 ImagesService.getImageList(function(data) {
-			 images = data.map(function (image) {
+			 var images = data.map(function (image) {
 				 var name = image.RepoTags.slice(-1)[0];
                  return name === '<none>:<none>' ? image.Id.substr(0, 12) : name;
              });
@@ -77,11 +81,23 @@ module.controller('ContainersController', function ($scope,$http, $location,$fil
             return string;
         });
 
-        ['Env', 'Dns', 'ExposedPorts', 'PortSpecs', 'Volumes', 'Links'].forEach(function (prop) {
+        var prop=['Env', 'Dns', 'ExposedPorts', 'PortSpecs', 'Volumes', 'Links'];
+        
+       
+        
+     ['Env', 'Dns', 'ExposedPorts', 'PortSpecs', 'Volumes', 'Links'].forEach(function (prop) {
             if (Array.isArray(Container[prop])) {
                 Container[prop] = tagsToArray(Container[prop]);
             }
         });
+     
+     $.each( [ 'Env', 'Dns', 'ExposedPorts', 'PortSpecs', 'Volumes', 'Links'], function( i, l ){
+    	 
+    	 if (Array.isArray(Container[l])) {
+             Container[l] = tagsToArray(Container[l]);
+         }
+    	 alert( "Index #" + i + ": " + l );
+    	 });
 
         if (!Container.VolumesFrom.length) {
             delete Container.VolumesFrom;
@@ -89,13 +105,14 @@ module.controller('ContainersController', function ($scope,$http, $location,$fil
         if (!Container.Volumes.length) {
             delete Container.Volumes;
         } else {
-            Container.Volumes.forEach(function (volume) {
+        	 Container.Volumes.forEach(function (volume) {
                 var parsed = volume.split(':'); // hostPath:containerPath:permission
                 Volumes[parsed[1]] = {};
                 Binds.push(volume);
             });
             Container.Volumes = Volumes;
         }
+
 
         if (Container.ExposedPorts.length) {
             Container.ExposedPorts.forEach(function (record) {

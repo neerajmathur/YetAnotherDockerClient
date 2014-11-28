@@ -48,7 +48,7 @@ angular
 								url = (parser.protocol === 'https:' ? 'wss'
 										: 'ws')
 										+ '://'
-										+ '192.168.232.133:4243/containers/'
+										+ '192.168.232.135:4243/containers/'
 										+ $routeParams.containerid
 										+ '/attach/ws?logs=0&stream=1&stdout=1&stderr=1&stdin=1';
 
