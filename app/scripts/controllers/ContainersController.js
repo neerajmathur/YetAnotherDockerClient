@@ -128,7 +128,11 @@ module.controller('ContainersController', function ($scope,$http, $location,$fil
         
         ContainersService.create(Container,function(data) {
 
-        	$location.path('/containers/'+data.Id);
+        	var containerdata ='{"Binds":["'+$scope.input.Volumes[0].text+'"]}'
+        	 ContainersService.start(data.Id,containerdata,function(data1) {
+        		 $location.path('/containers/'+data.Id);
+        	 });
+        		
 		  });
         
         

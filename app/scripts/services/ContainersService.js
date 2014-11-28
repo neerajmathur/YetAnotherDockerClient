@@ -11,8 +11,15 @@ module.service('ContainersService', function ($http,docker) {
 			$http.post(docker.baseurl + '/containers/create?name='+data.name,data).success(callback);
 		}
      
-   }
-	
+   ,
+   
+   start : function(containerid,data, callback) {
+		$http
+				.post(
+						docker.baseurl + '/containers/' + containerid
+								+ '/start',data).success(callback);
+	}
+}	
 	
 	
 });
