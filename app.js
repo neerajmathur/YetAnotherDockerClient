@@ -9,8 +9,8 @@ module.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'app/views/host.html',
-        controller: 'ImagesController'
+        templateUrl: 'app/views/dologin.html',
+        controller: 'DologinController'
     })
 	
      .when('/host', {
