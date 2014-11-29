@@ -18,7 +18,23 @@ module.service('ContainersService', function ($http,docker) {
 				.post(
 						docker.baseurl + '/containers/' + containerid
 								+ '/start',data).success(callback);
+	},
+	
+	buildFromDockerFile: function(tag,dockerFile, callback) {
+		
+		$http
+		.post(
+				docker.baseurl + '/build?t='+tag,dockerFile,
+				{
+			        withCredentials: true,
+			        headers: {'Content-Type': "application/tar" },
+			        transformRequest: angular.gzip
+			    }		
+		
+		).success(callback);
+		
 	}
+   
 }	
 	
 	
