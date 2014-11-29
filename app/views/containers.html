@@ -13,8 +13,34 @@
      <input type="button" class="btn btn-primary" value="Save" ng-click="saveImages()" />
     </form> -->
 	
+	  
+	
 	<!--  <input class="form-control" type="file" file-model="myFile"/>
-    <button class="btn-success btn"  ng-click="uploadFile()">upload me</button> --> 
+    <button class="btn-success btn"  ng-click="uploadFile()">upload me</button>-->
+	
+	
+<!-- Button trigger modal -->
+<button type="button" class="pull-right btn-success btn" data-toggle="modal" data-target="#myModalDockerFile" style="margin-left: 10px;">
+ <i class="glyphicon glyphicon-plus-sign"></i> Build From Docker File
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalDockerFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Select Docker File</h4>
+      </div>
+      <div class="modal-body">
+        <input type="file" ng-file-select="onFileSelect($files)" class="form-control" >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancle</button>
+      </div>
+    </div>
+  </div>
+</div>
 	
 	
 	<button class="pull-right btn-success btn" data-toggle="modal"
