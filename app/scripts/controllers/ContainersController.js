@@ -127,7 +127,7 @@ module.controller('ContainersController', function ($scope,$http, $location,$fil
     	 if (Array.isArray(Container[l])) {
              Container[l] = tagsToArray(Container[l]);
          }
-    	 alert( "Index #" + i + ": " + l );
+    	// alert( "Index #" + i + ": " + l );
     	 });
 
         if (!Container.VolumesFrom.length) {
