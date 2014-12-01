@@ -18,7 +18,7 @@ Technology Stack:
   Local Database (NodeJS or MongoDB), 
   Apache Web Server or any web server which can run angularjs
  
-![Alt text](https://drive.google.com/file/d/0ByBXxHGoDzFWSmIxeDBQMU1vWnc/preview)
+![Architecture](https://cloud.githubusercontent.com/assets/6531916/5243367/3b8d7fc6-7969-11e4-9181-6000e3017f39.jpg)
  
 Usage
 ==================== 
