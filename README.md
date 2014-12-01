@@ -16,7 +16,7 @@ Technology Stack:
   BootStrap, 
   HTML5, 
   Local Database (NodeJS or MongoDB), 
-  Apache Web Server or any web server which can run angularjs
+  NodeJs server
  
 ![Architecture](https://cloud.githubusercontent.com/assets/6531916/5243367/3b8d7fc6-7969-11e4-9181-6000e3017f39.jpg)
  
@@ -36,6 +36,11 @@ Modify app.js file with docker Rest API URL
     baseurl: 'http://<docker IP>:4243'
 });
 ```
+   ```bash
+   npm install  //To install the dependency
+   node server.js //To run the server
+```
+
 
 Modify app\scripts\controllers\ContainerController.js to update docker API URL to attach terminal , Line 48
 
