@@ -1,0 +1,40 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/bin/npm', 'install', 'mongojs' ]
+info using npm@1.1.4
+info using node@v0.6.12
+verbose config file /home/ashish/.npmrc
+verbose config file /usr/etc/npmrc
+verbose config file /usr/share/npm/npmrc
+verbose cache add [ 'mongojs', null ]
+silly cache add: name, spec, args [ undefined, 'mongojs', [ 'mongojs', null ] ]
+verbose parsed url { pathname: 'mongojs', path: 'mongojs', href: 'mongojs' }
+verbose addNamed [ 'mongojs', '' ]
+verbose addNamed [ null, '' ]
+silly name, range, hasData [ 'mongojs', '', false ]
+verbose raw, before any munging mongojs
+verbose url resolving [ 'https://registry.npmjs.org/', './mongojs' ]
+verbose url resolved https://registry.npmjs.org/mongojs
+http GET https://registry.npmjs.org/mongojs
+ERR! Error: failed to fetch from registry: mongojs
+ERR!     at /usr/share/npm/lib/utils/npm-registry-client/get.js:139:12
+ERR!     at cb (/usr/share/npm/lib/utils/npm-registry-client/request.js:31:9)
+ERR!     at Request._callback (/usr/share/npm/lib/utils/npm-registry-client/request.js:136:18)
+ERR!     at Request.callback (/usr/lib/nodejs/request/main.js:119:22)
+ERR!     at Request.<anonymous> (/usr/lib/nodejs/request/main.js:212:58)
+ERR!     at Request.emit (events.js:88:20)
+ERR!     at ClientRequest.<anonymous> (/usr/lib/nodejs/request/main.js:209:10)
+ERR!     at ClientRequest.emit (events.js:67:17)
+ERR!     at ClientRequest.onError (/usr/lib/nodejs/request/tunnel.js:164:21)
+ERR!     at ClientRequest.g (events.js:156:14)
+ERR! You may report this log at:
+ERR!     <http://bugs.debian.org/npm>
+ERR! or use
+ERR!     reportbug --attach /home/ashish/cloud/npm-debug.log npm
+ERR! 
+ERR! System Linux 3.8.0-44-generic
+ERR! command "node" "/usr/bin/npm" "install" "mongojs"
+ERR! cwd /home/ashish/cloud
+ERR! node -v v0.6.12
+ERR! npm -v 1.1.4
+ERR! message failed to fetch from registry: mongojs
+verbose exit [ 1, true ]

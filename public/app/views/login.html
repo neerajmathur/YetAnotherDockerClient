@@ -1,0 +1,83 @@
+<!-- Button trigger modal -->
+<button type="button" id="myButton"  data-toggle="modal" data-target="#myModal">
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> -->
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+     
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="Enter Email ID" ng-model="login.text">
+						<input type="password" class="form-control input-lg text-center" placeholder="Enter Password" ng-model="login.pass">
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<!-- <button type="submit" class="btn btn-primary btn-lg" ng-click="checkLogin()">Add</button> -->
+
+
+      </div>
+      <div class="modal-footer">
+<!-- ZZ -->
+        <button type="button" class="btn btn-primary" ng-click="checkLogin()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+	$('#myButton').click();
+</script>
+
+	<div class="container">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Cloud Computing <span class="label label-info"></span></h1>
+		</div>
+
+		<!-- TODO LIST -->
+		<div id="todo-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				
+
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+<!-- 				<div class="checkbox" ng-repeat="todo in todos">
+					<label>
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> 
+					</label>
+				</div> -->
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+
+			</div>
+		</div>
+<!-- {{formData}} -->
+		<!-- FORM TO CREATE TODOS -->
+
+<!-- {{formData}} -->
+<!-- 		<div id="todo-form-2" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<input type="text" class="form-control input-lg text-center" placeholder="Enter Email ID" ng-model="login.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="Enter Container Id" ng-model="login.pass">
+					</div>
+
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="checkLogin()">Add</button>
+				</form>
+			</div>
+		</div> -->
+
+
+	</div>
