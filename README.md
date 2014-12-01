@@ -50,3 +50,5 @@ url = (parser.protocol === 'https:' ? 'wss'
 										+ $routeParams.containerid
 										+ '/attach/ws?logs=0&stream=1&stdout=1&stderr=1&stdin=1';
 ```
+
+Team : Neeraj Mathur , Ashish Kumar , Vivek Jain
